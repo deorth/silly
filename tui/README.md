@@ -23,13 +23,6 @@ neon swagger of **Hackers (1995)**, the grounded terminal realism of
 ## Run it
 
 ```sh
-source venv/bin/activate      # the virtualenv created in this directory
-python hack.py
-```
-
-Or from scratch elsewhere:
-
-```sh
 python3 -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
 python hack.py
