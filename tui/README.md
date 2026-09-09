@@ -38,3 +38,76 @@ python hack.py
 
 The dramatic flash also fires on its own every ~17 seconds. Best enjoyed
 full-screen with the lights off. Hack responsibly — it's all theatre.
+
+---
+
+# 🦆 duck.exe — the rubber duck debugger
+
+A full-screen [Textual](https://textual.textualize.io) TUI containing one (1)
+rubber duck. You type your problem at it. It floats, blinks, tilts its head,
+and says "go on." Some minutes later you have fixed your bug and the duck has
+said nothing of substance. This is the intended outcome.
+
+![screenshot](duck.png)
+
+## What's on screen
+
+- **THE DUCK** — pixel art rendered through Textual's Line API at double
+  vertical resolution (`▀` with a foreground and a background per cell), so the
+  duck is drawn in square-ish pixels rather than character soup. It bobs on a
+  sine-wave surface, casts a wobbling reflection that dissolves with depth, and
+  is flanked by reeds swaying out of time with each other. It blinks on its own.
+  It scales to whatever pane you give it.
+- **Session transcript** — what you said, what the duck said back.
+- **DUCK TELEMETRY** — `COMPREHENSION` (0%), `PATIENCE` (drains when you
+  ramble, recovers when you get to the point), `QUACK PRESSURE` (builds in
+  silence; when it tops out the duck says something unprompted), plus `EMPATHY`
+  and `BUOYANCY`, both pinned at 100%, one of them honestly.
+- **Status bar** — word counts, quacks, bugs solved, and advice given.
+
+## Run it
+
+Same venv as `hack.py` — no extra dependencies.
+
+```sh
+python3 -m venv venv && source venv/bin/activate
+pip install -r requirements.txt
+python duck.py
+```
+
+## Keys
+
+| key                | command  | action                               |
+|--------------------|----------|--------------------------------------|
+| `enter`            |          | say it out loud                      |
+| `ctrl+f` / `ctrl+b`| `/bread` | throw bread                          |
+| `ctrl+t`           | `/pet`   | pet the duck                         |
+| `ctrl+g`           | `/tell`  | demand it just tell you what's wrong |
+|                    | `/help`  | list all of this in the transcript   |
+| `ctrl+q`           |          | leave the duck                       |
+
+Your hands are already in the input box, so everything has a typed command too.
+
+The obvious keys were taken: `ctrl+p` is Textual's command palette, `ctrl+j` is
+aliased to `newline` (which your terminal sends as LF), and `ctrl+b` is tmux's
+prefix — so bread answers to `ctrl+f` as well, for anyone inside tmux.
+
+## The duck's method
+
+Mostly it makes a noise. Sometimes it asks the one question you were avoiding —
+*"what did you expect to happen?"*, *"what changed?"*, *"did you save the
+file."* It never answers anything.
+
+It does, however, recognise roughly thirty topics and has been through each of
+them before. Mention DNS and it will tell you it is DNS. Mention a regex and it
+will note that you now have two problems. Mention deploying on a Friday and it
+swims away.
+
+When you type the words that mean you've got it — *oh*, *wait*, *of course*,
+*found it* — the duck notices, the screen flashes **BUG SOLVED**, and the
+counter reads `advice given: 0`. That counter is not a joke. It is wired to a
+variable that is never incremented, because the duck has never once helped and
+you have solved every bug in here yourself.
+
+`EMPATHY` is marked simulated. Bread is bad for real ducks; this one is rubber,
+so it's fine.
