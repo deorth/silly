@@ -111,3 +111,51 @@ you have solved every bug in here yourself.
 
 `EMPATHY` is marked simulated. Bread is bad for real ducks; this one is rubber,
 so it's fine.
+
+---
+
+# 🏁 race.py — the Sorting Grand Prix
+
+Seven sorting algorithms, one shuffled array each, no handicaps. Every racer
+gets exactly the same number of operations per tick, so the finishing order is
+the real complexity class, live, in front of a paying crowd.
+
+![screenshot](race.png)
+
+Nothing here is animated theatre: each racer is a generator that yields once per
+operation and mutates its own list in place, and the bars in each lane **are**
+that list. Green bars are elements already in their final position, so you watch
+quicksort's partitions snap into place while bubble sort walks the same ground
+for the twentieth time.
+
+## The field
+
+| racer            | form       | how it ends                                        |
+|------------------|------------|----------------------------------------------------|
+| `QUICKSORT`      | O(n log n) | wins, clinically, in about 210 operations           |
+| `INSERTION SORT` | O(n²)      | walks each element home, one at a time              |
+| `BUBBLE SORT`    | O(n²)      | doing its best; n² is not a strategy, it's a diagnosis |
+| `STALIN SORT`    | O(n)       | removes every out-of-order element and finishes first, with about four of the forty survivors |
+| `SLEEP SORT`     | O(zzz)     | every element sleeps proportionally to itself, then reports |
+| `BOGOSORT`       | O(n·n!)    | shuffles, checks, repeats, forever                  |
+| `MIRACLE SORT`   | O(faith)   | checks whether the array has sorted itself. That is the entire algorithm. |
+
+Stalin sort genuinely takes P1 in ~39 operations every time, and the commentary
+box notes how many elements did not make it. Bogosort is quoted at 400M and
+miracle sort at ∞, neither of which is generous enough. There are 8×10⁴⁷
+arrangements of forty elements; the booth will tell you how many bogosort has
+seen so far.
+
+## Run it
+
+Same venv as the others — no extra dependencies.
+
+```sh
+python race.py
+```
+
+| key     | action                          |
+|---------|---------------------------------|
+| `space` | red flag (pause)                |
+| `r`     | new shuffle, new race           |
+| `q`     | leave the paddock               |
